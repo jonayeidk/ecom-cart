@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
-use App\Http\Controllers\Controller;
+
 use Auth;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Image;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Model\Admin\Category;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller {
     /**
