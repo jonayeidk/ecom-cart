@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration {
             $table->string( 'fuel_type' )->nullable();
             $table->string( 'cc' )->nullable();
             $table->string( 'price' );
+            $table->string( 'quantity' );
             $table->string( 'sell_price' )->nullable();
             $table->integer( 'user_id' );
             $table->string( 'meta_title' )->nullable();

@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$FXYwUeb3S7aHOp8IgvOyZeFDW.5xy4BWoy3AbmIhViLBLFZJLdp4C', // password
             'remember_token' => Str::random(10),
-        ]);    
+        ]);  
+        
+        $this->call([
+            ProductsSeeder::class
+        ]);
     }
 }

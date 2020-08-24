@@ -13,10 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get( '/', function () {
-    return view( 'welcome' );
-} );
 
+// fontend routes
+
+Route::get( '/', 'HomeController@index');
+
+Route::get('/home',function(){
+    return redirect('/admin/dashboard');
+});
+
+
+Route::get('/add-to-cart/{id}','CartController@addToCart')->name('add-to-cart');
+
+Route::get('/remove-to-cart/{id}','CartController@removeToCart')->name('remove-to-cart');
+
+// backend routes
+
+ 
 Auth::routes();
 
 Route::prefix( 'admin' )->name( 'admin.' )->namespace( 'Admin' )->group( function () {
@@ -25,16 +38,11 @@ Route::prefix( 'admin' )->name( 'admin.' )->namespace( 'Admin' )->group( functio
 
         Route::get( 'dashboard', 'AdminController@index' );
 
-<<<<<<< HEAD
-        Route::get('dashboard', 'AdminController@index');
-  
-        Route::resource('category','CategoryController');
-=======
         Route::resource( 'category', 'CategoryController' );
 
         Route::resource( 'slug', 'SlugController' );
+
         Route::resource( 'product', 'ProductController' );
->>>>>>> 25a5125ead8ab201dd82c160dcf1b7ca7d4f0d91
 
     } );
 

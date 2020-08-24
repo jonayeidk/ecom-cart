@@ -3,18 +3,22 @@
 @section('head')
     
 
-<title>Admin | Category</title>
+    <title>Admin | Category</title>
 
-<!-- Font Awesome Icons -->
-<link rel="stylesheet" href="{{asset('assets/admin/')}}/plugins/fontawesome-free/css/all.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="{{asset('assets/admin/')}}/dist/css/adminlte.min.css">
-<!-- Google Font: Source Sans Pro -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{asset('assets/admin/')}}/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('assets/admin/')}}/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+
+
 @endsection
 
 
 @section('content')
+
 
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
@@ -225,7 +229,8 @@
   </div>
   <!-- /.content-wrapper -->
 
-@endsection
+
+  @endsection
 
 
 @section('js')
@@ -412,6 +417,10 @@
    
    
    </script>
+
+
+
+
 
 <!-- jQuery -->
 <script src="{{asset('assets/admin/')}}/plugins/jquery/jquery.min.js"></script>

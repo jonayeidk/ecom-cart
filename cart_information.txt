@@ -1,0 +1,27 @@
+
+	user ->  ( login / register )
+
+	product list	
+
+	cart -> quantity , price  | | session ( custom ), cookies ( custom ), database ( login / without login ), package (95%) 
+
+	( login -> in / not ( register ) ) checkout 
+	
+	checkout - information -> billing/shipping -> name , phone , email , address, password    ( register ) ( in the same time login )
+
+	payment -> bkash , paypal, other way 
+
+	order submit
+
+
+	admin end - >
+
+	manage order -> status update ->delivered / not -> if( delivered) quantity drecrease ; 
+
+
+
+
+
+ 
+
+	
