@@ -28,7 +28,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Category</li>
+              <li class="breadcrumb-item active">Product</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -44,7 +44,7 @@
             <div class="card-body">
               <h5 class="card-title">Manage Category</h5>
     
-              <a href="{{route('admin.category.create')}}" class="card-link float-right">Add New</a>
+              <a href="{{route('admin.product.create')}}" class="card-link float-right">Add New</a>
             </div>
           </div>
     
@@ -64,21 +64,24 @@
                   </thead>
 
                   <tbody>
-                     @foreach ($p_categories as $p_category)
-                        <tr>
-                          <td>{{ $p_category->title}}</td>
-                          <td>{{ $p_category->slug}}</td>
-                          <td>{{ $p_category->meta_title}}</td>
-                          <td>{{ $p_category->meta_keyword}}</td>
-                          <td>{{ $p_category->meta_description}}</td>
-                          <td><img width="100px" src="{{ asset($p_category->image) }}"></td>
-                          <td>Status</td>
-                          <td>
-                              <a href="" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
-                              <a href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-                          </td>
-                        </tr>
-                     @endforeach
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
                      
                   </tbody>
               </table>

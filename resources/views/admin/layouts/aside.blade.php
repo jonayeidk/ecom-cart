@@ -42,6 +42,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{route('admin.product.index')}}" class="nav-link {{(request()->is('admin/product')) ? 'active' : '' }} ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Product
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

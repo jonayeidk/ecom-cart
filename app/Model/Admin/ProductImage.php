@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class ProductImage extends Model
 {
     //
 }
