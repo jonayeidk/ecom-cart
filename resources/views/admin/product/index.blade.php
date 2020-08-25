@@ -23,7 +23,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Category</h1>
+            <h1 class="m-0 text-dark">Product</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -39,10 +39,10 @@
     <!-- Main content -->
     <div class="content">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Manage Category</h5>
+              <h5 class="card-title">Manage Product</h5>
     
               <a href="{{route('admin.product.create')}}" class="card-link float-right">Add New</a>
             </div>
@@ -52,37 +52,45 @@
               <table class="table table-hover">
                   <thead>
                       <tr>
-                        <th>Categoy Name</th>
+                        <th>Name</th>
                         <th>Slug</th>
-                        <th>Meta Title</th>
-                        <th>Meta Keword</th>
-                        <th>Meta Description</th>
+                        <th>Subtitle</th>
+                        <th>Price</th>
+                        <th>SPrice</th>
+                        <th>QTY</th>
                         <th>Image</th>
+                        <th>Category</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
                   </thead>
 
                   <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                     
+                    @foreach ($products as $product)
+                     <tr>
+                        <td>{{ $product->title }}</td>        
+                        <td>{{ $product->slug }}</td>               
+                        <td>{{ $product->subtitle }}</td>      
+                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->sell_price }}</td>
+                        <td>{{ $product->quantity }}</td>     
+                        <td><img width="100px" src="{{ asset('uploads/images/products/'.$product->image)}}"></td>     
+                        <td>
+                          @if($product->p_categories)
+                          {{  $product->p_categories->title}} 
+                          @endif
+                        </td>
+                        <td><span
+                          class="badge badge-@if($product->status == true){{ 'success' }} @else{{ 'warning' }} @endif">{{ $product->status_text }}</span>
+                        </td>
+                        <td>
+                          <a href=""
+                            class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('admin.product.edit',$product->id)}}" class="btn btn-info btn-sm"><i
+                                class="fas fa-edit"></i></a>  
+                        </td>       
+                    </tr>      
+                    @endforeach
                   </tbody>
               </table>
           </div><!-- /.card -->

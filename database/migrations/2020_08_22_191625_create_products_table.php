@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration {
             $table->string( 'fuel_type' )->nullable();
             $table->string( 'cc' )->nullable();
             $table->string( 'price' );
+            $table->string( 'quantity' );
             $table->string( 'sell_price' )->nullable();
             $table->integer( 'user_id' );
             $table->string( 'meta_title' )->nullable();
@@ -28,7 +29,7 @@ class CreateProductsTable extends Migration {
             $table->text( 'meta_description' )->nullable();
             $table->text( 'url' )->nullable();
             $table->text( 'image' )->nullable();
-            $table->tinyInteger( 'status' );
+            $table->boolean( 'status' )->default( 0 );
             $table->softDeletes();
             $table->timestamps();
         } );

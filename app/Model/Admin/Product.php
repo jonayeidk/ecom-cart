@@ -9,6 +9,13 @@ class Product extends Model {
     protected $guarded = [];
 
     public function product_category() {
-        return $this->belongsTo( Category::class );
+        return $this->belongsTo( Category::class, 'category_id' );
+    }
+
+    public function getStatusTextAttribute() {
+        if ( $this->status == false ) {
+            return __( 'Inactive' );
+        }
+        return __( 'Active' );
     }
 }

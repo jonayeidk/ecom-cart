@@ -143,7 +143,7 @@
 
 
                             <div class="form-group">
-                                <label class="col-md-12">CC</label>
+                                <label class="col-md-12">Price</label>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <input class="form-control" name="price" id="price" onkeyup="wordcount(this.value)" required/>
                                     <span style="color:red" id="w_count">With 60 Character</span>
@@ -152,9 +152,17 @@
 
 
                             <div class="form-group">
-                                <label class="col-md-12">CC</label>
+                                <label class="col-md-12">Sell Price</label>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <input class="form-control" name="sell_price" id="sell_price" onkeyup="wordcount(this.value)" required/>
+                                    <span style="color:red" id="w_count">With 60 Character</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12">QTY</label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input class="form-control" name="quantity" id="quantity" onkeyup="wordcount(this.value)" required/>
                                     <span style="color:red" id="w_count">With 60 Character</span>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $p_categories = Category::orderBy( 'created_at', 'desc' )->paginate( 10 );
+        $p_categories = Category::orderBy( 'created_at', 'DESC' )->paginate( 10 );
         return view( 'admin.category.index', compact( 'p_categories' ) );
     }
 

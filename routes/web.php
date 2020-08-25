@@ -19,6 +19,10 @@ Route::get( '/', function () {
 
 Auth::routes();
 
+Route::name( 'frontend.' )->namespace( 'Frontend' )->group( function () {
+    Route::get( '/', 'HomeController@home' )->name( 'home' );
+} );
+
 Route::prefix( 'admin' )->name( 'admin.' )->namespace( 'Admin' )->group( function () {
 
     Route::middleware( 'auth' )->group( function () {
