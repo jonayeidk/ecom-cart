@@ -32,9 +32,7 @@ Route::get('/remove-to-cart/{id}','CartController@removeToCart')->name('remove-t
  
 Auth::routes();
 
-Route::name( 'frontend.' )->namespace( 'Frontend' )->group( function () {
-    Route::get( '/', 'HomeController@home' )->name( 'home' );
-} );
+
 
 Route::prefix( 'admin' )->name( 'admin.' )->namespace( 'Admin' )->group( function () {
 
