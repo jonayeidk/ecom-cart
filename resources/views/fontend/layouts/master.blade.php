@@ -122,17 +122,7 @@
                 </div>
             </div>
         </div>
-        
-        
-        
-		
-		
-		
-		
-		
-		
-		
-		
+    
 		<!-- all js here -->
         <script src="{{asset('assets/fontend/')}}/assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="{{asset('assets/fontend/')}}/assets/js/popper.js"></script>

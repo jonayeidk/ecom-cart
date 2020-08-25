@@ -81,60 +81,54 @@
                         </div>
                     </div>
                     <div class="header-cart cart-small-device">
-                        <button class="icon-cart">
-                            <i class="ti-shopping-cart"></i>
-                            <span class="count-style">02</span>
-                            <span class="count-price-add">$295.95</span>
-                        </button>
-                        <div class="shopping-cart-content">
-                            <ul>
+                        <?php 
+                        $total = 0;
+                        $cart = session()->get('cart');  
+                    ?>
+     
+                
+                    <button class="icon-cart">
+                        <i class="ti-shopping-cart"></i>
+                        <span class="count-style">{{$cart?$cart['totalQuantity']:0}}</span>
+                        <span class="count-price-add">${{$cart?$cart['totalPrice']:0}}</span>
+                    </button>
+                    @if($cart)
+    
+                    <div class="shopping-cart-content">
+                        <ul>
+    
+                            @if($cart['item'])
+                                @foreach ($cart['item'] as $id=>$cartinfo)
                                 <li class="single-shopping-cart">
                                     <div class="shopping-cart-img">
                                         <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-1.jpg"></a>
                                     </div>
+    
                                     <div class="shopping-cart-title">
-                                        <h3><a href="#">Gloriori GSX 250 R </a></h3>
-                                        <span>Price: $275</span>
-                                        <span>Qty: 01</span>
+                                        <h3><a href="#">{{$cartinfo['name']}} </a></h3>
+                                        <span>Price: $ {{$cartinfo['price']}}</span>
+                                        <span>Qty: {{$cartinfo['quantity']}}</span>
                                     </div>
                                     <div class="shopping-cart-delete">
-                                        <a href="#"><i class="icofont icofont-ui-delete"></i></a>
+                                        <a href="{{route('remove-to-cart',$id)}}"><i class="icofont icofont-ui-delete"></i></a>
                                     </div>
                                 </li>
-                                <li class="single-shopping-cart">
-                                    <div class="shopping-cart-img">
-                                        <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-2.jpg"></a>
-                                    </div>
-                                    <div class="shopping-cart-title">
-                                        <h3><a href="#">Demonissi Gori</a></h3>
-                                        <span>Price: $275</span>
-                                        <span class="qty">Qty: 01</span>
-                                    </div>
-                                    <div class="shopping-cart-delete">
-                                        <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                    </div>
-                                </li>
-                                <li class="single-shopping-cart">
-                                    <div class="shopping-cart-img">
-                                        <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-3.jpg"></a>
-                                    </div>
-                                    <div class="shopping-cart-title">
-                                        <h3><a href="#">Demonissi Gori</a></h3>
-                                        <span>Price: $275</span>
-                                        <span class="qty">Qty: 01</span>
-                                    </div>
-                                    <div class="shopping-cart-delete">
-                                        <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="shopping-cart-total">
-                                <h4>total: <span>$550.00</span></h4>
-                            </div>
-                            <div class="shopping-cart-btn">
-                                <a class="btn-style cr-btn" href="#">checkout</a>
-                            </div>
+    
+                                <?php $total += $cartinfo['price'] * $cartinfo['quantity'] ?>
+                              
+                                @endforeach
+                            @endif
+    
+                        </ul>
+                        <div class="shopping-cart-total">
+                            <h4>total: <span>$ {{$total}}</span></h4>
                         </div>
+                        <div class="shopping-cart-btn">
+                            <a class="btn-style cr-btn" href="#">checkout</a>
+                        </div>
+                    </div>
+    
+                    @endif
                     </div>
                 </div>
                 <div class="mobile-menu-area col-12">
@@ -217,7 +211,6 @@
                             <li class="single-shopping-cart">
                                 <div class="shopping-cart-img">
                                     <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-1.jpg"></a>
-                                    {{-- <a href="#"><img alt="" src="{{$cartinfo['image']}}"></a> --}} 
                                 </div>
 
                                 <div class="shopping-cart-title">
