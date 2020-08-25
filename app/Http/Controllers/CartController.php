@@ -9,8 +9,12 @@ use App\Model\Admin\Cart;
 class CartController extends Controller
 {
 
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
+        $id = $request->product_id;
+
+        // return $request->product_id;
+
         $product = Product::where('status',1)->find($id);
         if(!$product) {
             abort(404);
@@ -40,7 +44,8 @@ class CartController extends Controller
             $cart['totalPrice'] = $product->sell_price; // quantity increment  2nd
             // cart complete 
             session()->put('cart', $cart); 
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+
+            return response()->json($cart);
         }
         //  cart data exist 
         //  same product 2nd
@@ -52,7 +57,7 @@ class CartController extends Controller
             $cart['totalQuantity']++; // ++ = 1 , +=1 , 
             $cart['totalPrice'] += $product->sell_price;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return response()->json($cart);
         }
 
         // cart data exist 
@@ -69,8 +74,7 @@ class CartController extends Controller
         $cart['totalPrice'] += $product->sell_price;
         // dd($cart);
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-
+        return response()->json($cart);
     }
 
 

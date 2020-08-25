@@ -89,8 +89,8 @@
                 
                     <button class="icon-cart">
                         <i class="ti-shopping-cart"></i>
-                        <span class="count-style">{{$cart?$cart['totalQuantity']:0}}</span>
-                        <span class="count-price-add">${{$cart?$cart['totalPrice']:0}}</span>
+                        <span class="count-style cart_total_quantity" id="cart_total_quantity" >{{$cart?$cart['totalQuantity']:0}}</span>
+                        <span class="count-price-add cart_total_price" id="cart_total_price">${{$cart?$cart['totalPrice']:0}}</span>
                     </button>
                     @if($cart)
     

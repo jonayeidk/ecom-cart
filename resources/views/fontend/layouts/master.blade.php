@@ -10,7 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/fontend/')}}/assets/img/favicon.png">
-		
+        
+          <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
 		<!-- all css here -->
         <link rel="stylesheet" href="{{asset('assets/fontend/')}}/assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{asset('assets/fontend/')}}/assets/css/animate.css">
@@ -124,7 +127,11 @@
         </div>
     
 		<!-- all js here -->
-        <script src="{{asset('assets/fontend/')}}/assets/js/vendor/jquery-1.12.0.min.js"></script>
+        {{-- <script src="{{asset('assets/fontend/')}}/assets/js/vendor/jquery-1.12.0.min.js"></script> --}}
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+
         <script src="{{asset('assets/fontend/')}}/assets/js/popper.js"></script>
         <script src="{{asset('assets/fontend/')}}/assets/js/bootstrap.min.js"></script>
         <script src="{{asset('assets/fontend/')}}/assets/js/isotope.pkgd.min.js"></script>
@@ -135,6 +142,70 @@
         <script src="{{asset('assets/fontend/')}}/assets/js/owl.carousel.min.js"></script>
         <script src="{{asset('assets/fontend/')}}/assets/js/plugins.js"></script>
         <script src="{{asset('assets/fontend/')}}/assets/js/main.js"></script>
+
+
+
+
+        <script type="text/javascript">
+
+$(document).ready(function(){
+
+    console.log('document working')
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });  
+            // var addtocart = document.getElementById("add_to_cart").value;
+
+            $('.add_to_cart').on('click',function(){
+
+                var product_id = $(this).val();
+                // console.log(product_id)
+                token = $( "input[value='_token']" ).val();
+                data = {
+                   "_token": token,
+                   "product_id": product_id
+               };
+
+               $.ajax({
+                   url: "{{route('add-to-cart-js')}}",
+                   type: "post",
+                   data:data,
+                   success: function (response) {
+                    
+                    console.log(response);
+
+                    //    console.log(response['totalQuantity']);
+
+                    // console.log(('#cart_total_quantity').html());
+                    // var crtjs  =  document.getElementsById('cart_total_quantity').innerHTML;
+                    // console.log(crtjs)
+
+                    // $('.cart_total_quantity').text(response['totalQuantity']);
+                    // $('.cart_total_price_js').text(response['totalPrice']);
+                    
+
+                   },
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       console.log(textStatus, errorThrown);
+                   }
+               });
+
+
+
+            })
+
+        //  onclick method
+        
+        // function AddtoCart(id){
+        //     alert(id);
+        // } 
+});
+
+        </script>
+
     </body>
 
 <!-- Mirrored from preview.hasthemes.com/oswan/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Jul 2020 05:13:09 GMT -->
