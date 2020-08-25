@@ -37,6 +37,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store( Request $request ) {
+<<<<<<< HEAD
 
         $this->validate( $request, [
             'title'       => 'required',
@@ -88,6 +89,13 @@ class ProductController extends Controller {
             return redirect()->route( 'admin.product.index', $product->id )->with( 'success', __( 'Product' ) );
         }
         return redirect()->back()->with( 'error', __( 'Please try again.' ) );
+=======
+        dd( $request->all() );
+
+        // input 
+        
+        // home 
+>>>>>>> aec6d4f7bf0583d7ff6992836dc654152729e421
 
     }
 
