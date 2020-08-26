@@ -127,10 +127,11 @@
         </div>
     
 		<!-- all js here -->
-        {{-- <script src="{{asset('assets/fontend/')}}/assets/js/vendor/jquery-1.12.0.min.js"></script> --}}
+        <script src="{{asset('assets/fontend/')}}/assets/js/vendor/jquery-1.12.0.min.js"></script>
 
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> --}}
 
         <script src="{{asset('assets/fontend/')}}/assets/js/popper.js"></script>
         <script src="{{asset('assets/fontend/')}}/assets/js/bootstrap.min.js"></script>
@@ -173,19 +174,42 @@ $(document).ready(function(){
                    url: "{{route('add-to-cart-js')}}",
                    type: "post",
                    data:data,
-                   success: function (response) {
+                   success: function (data) {
+                    console.log(data)
+
+                    $('.cart_total_quantity').html(data.cart['totalQuantity']);
+                    $('.cart_total_price').html(data.cart['totalPrice']);
+
+                    if(data.type == 'update'){
+                        $('.'+data.id+'_quantity').html(data.item.quantity)
+                    }
+                  
+                    if(data.type == 'new'){
+
+                        var html = '';
+                        console.log(data.item);
+                        console.log(data.item.name);
+                        i = data.id;
+
+                        html +='<li class="single-shopping-cart">';
+                        html +='<div class="shopping-cart-img">';
+                        html +=' <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-1.jpg"></a>';
+                        html +=' </div>';
+                        html +='  <div class="shopping-cart-title">';
+                        html +=' <h3><a href="#">'+data.item.name+'</a></h3>';
+                        html +='<span>Price:'+data.item.price+'</span>';
+                        html +=' <span>Qty:<span class="'+data.id+'_quantity">'+data.item.quantity+'</span></span>';
+                        html +='</div>';
+                        html +='<div class="shopping-cart-delete">';
+                        html +='<a href="{{route('remove-to-cart','+data.id+')}}"><i class="icofont icofont-ui-delete"></i></a>';
+                        html +='  </div>';
+                        html +=' </li>';
+                
+                        $('.mini_cart_content').append(html)
+                    }
+
                     
-                    console.log(response);
 
-                    //    console.log(response['totalQuantity']);
-
-                    // console.log(('#cart_total_quantity').html());
-                    // var crtjs  =  document.getElementsById('cart_total_quantity').innerHTML;
-                    // console.log(crtjs)
-
-                    // $('.cart_total_quantity').text(response['totalQuantity']);
-                    // $('.cart_total_price_js').text(response['totalPrice']);
-                    
 
                    },
                    error: function(jqXHR, textStatus, errorThrown) {

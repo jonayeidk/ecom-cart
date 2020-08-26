@@ -45,7 +45,12 @@ class CartController extends Controller
             // cart complete 
             session()->put('cart', $cart); 
 
-            return response()->json($cart);
+            return response()->json([
+                'type'=>'new',
+                'cart'=>$cart,
+                'id'=>$id,
+                'item'=>$cart['item'][$id]
+            ]);
         }
         //  cart data exist 
         //  same product 2nd
@@ -57,7 +62,13 @@ class CartController extends Controller
             $cart['totalQuantity']++; // ++ = 1 , +=1 , 
             $cart['totalPrice'] += $product->sell_price;
             session()->put('cart', $cart);
-            return response()->json($cart);
+
+            return response()->json([
+                'type'=>'update',
+                'cart'=>$cart,
+                'id'=>$id,
+                'item'=>$cart['item'][$id]
+            ]);
         }
 
         // cart data exist 
@@ -74,7 +85,12 @@ class CartController extends Controller
         $cart['totalPrice'] += $product->sell_price;
         // dd($cart);
         session()->put('cart', $cart);
-        return response()->json($cart);
+        return response()->json([
+            'type'=>'new',
+            'cart'=>$cart,
+            'id'=>$id,
+            'item'=>$cart['item'][$id]
+        ]);
     }
 
 

@@ -89,13 +89,13 @@
                 
                     <button class="icon-cart">
                         <i class="ti-shopping-cart"></i>
-                        <span class="count-style cart_total_quantity" id="cart_total_quantity" >{{$cart?$cart['totalQuantity']:0}}</span>
+                        <div class="count-style cart_total_quantity" id="cart_total_quantity" >{{$cart?$cart['totalQuantity']:0}}</div>
                         <span class="count-price-add cart_total_price" id="cart_total_price">${{$cart?$cart['totalPrice']:0}}</span>
                     </button>
                     @if($cart)
     
                     <div class="shopping-cart-content">
-                        <ul>
+                        <ul class="mini_cart_content">
     
                             @if($cart['item'])
                                 @foreach ($cart['item'] as $id=>$cartinfo)
@@ -107,7 +107,7 @@
                                     <div class="shopping-cart-title">
                                         <h3><a href="#">{{$cartinfo['name']}} </a></h3>
                                         <span>Price: $ {{$cartinfo['price']}}</span>
-                                        <span>Qty: {{$cartinfo['quantity']}}</span>
+                                        <span>Qty: <span class="{{$id}}_quantity">{{$cartinfo['quantity']}}</span></span>
                                     </div>
                                     <div class="shopping-cart-delete">
                                         <a href="{{route('remove-to-cart',$id)}}"><i class="icofont icofont-ui-delete"></i></a>
@@ -121,7 +121,7 @@
     
                         </ul>
                         <div class="shopping-cart-total">
-                            <h4>total: <span>$ {{$total}}</span></h4>
+                            <h4>total: <span class="cart_total_price">$ {{$total}}</span></h4>
                         </div>
                         <div class="shopping-cart-btn">
                             <a class="btn-style cr-btn" href="#">checkout</a>
@@ -198,14 +198,14 @@
             
                 <button class="icon-cart">
                     <i class="ti-shopping-cart"></i>
-                    <span class="count-style">{{$cart?$cart['totalQuantity']:0}}</span>
-                    <span class="count-price-add">${{$cart?$cart['totalPrice']:0}}</span>
+                    <span class="count-style cart_total_quantity" id="cart_total_quantity" >{{$cart?$cart['totalQuantity']:0}}</span>
+                    <span class="count-price-add cart_total_price" id="cart_total_price">${{$cart?$cart['totalPrice']:0}}</span>
                 </button>
-                @if($cart)
+              
 
                 <div class="shopping-cart-content">
-                    <ul>
-
+                    <ul class="mini_cart_content">
+                    @if($cart)
                         @if($cart['item'])
                             @foreach ($cart['item'] as $id=>$cartinfo)
                             <li class="single-shopping-cart">
@@ -216,7 +216,7 @@
                                 <div class="shopping-cart-title">
                                     <h3><a href="#">{{$cartinfo['name']}} </a></h3>
                                     <span>Price: $ {{$cartinfo['price']}}</span>
-                                    <span>Qty: {{$cartinfo['quantity']}}</span>
+                                    <span>Qty: <span  class="{{$id}}_quantity">{{$cartinfo['quantity']}}</span></span>
                                 </div>
                                 <div class="shopping-cart-delete">
                                     <a href="{{route('remove-to-cart',$id)}}"><i class="icofont icofont-ui-delete"></i></a>
@@ -227,17 +227,17 @@
                           
                             @endforeach
                         @endif
-
+                        @endif
                     </ul>
                     <div class="shopping-cart-total">
-                        <h4>total: <span>$ {{$total}}</span></h4>
+                        <h4>total: <span class="cart_total_price">$ {{$total}}</span></h4>
                     </div>
                     <div class="shopping-cart-btn">
                         <a class="btn-style cr-btn" href="#">checkout</a>
                     </div>
                 </div>
 
-                @endif
+              
             </div>
         </div>
     </div>
