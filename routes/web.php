@@ -24,7 +24,7 @@ Route::get('/home',function(){
 
 
 Route::get('/add-to-cart/{id}','CartController@addToCart')->name('add-to-cart');
-Route::get('/remove-to-cart/{id}','CartController@removeToCart')->name('remove-to-cart');
+Route::post('/remove-to-cart','CartController@removeToCart')->name('remove-to-cart');
 
 
 Route::post('/add-to-cart-js','CartController@addToCart')->name('add-to-cart-js');

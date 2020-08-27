@@ -149,9 +149,45 @@
 
         <script type="text/javascript">
 
+
+        
+            function RemoveToCart(id){
+                var result = confirm("Are you sure ? ");
+                if (result == false) {
+                    return;
+                }
+                var remove_productid = id;
+                
+                var parent_el = document.getElementById(id+"_parent_el").style.display = "none";
+                // parent_el.style.display = "none";
+
+                token = $( "input[value='_token']" ).val();
+                data = {
+                    "_token": token,
+                    "product_id": remove_productid
+                };
+
+               $.ajax({
+                   url: "{{route('remove-to-cart')}}",
+                   type: "post",
+                   data:data,
+                   success: function (response) {
+                     
+                      $('.cart_total_quantity').html(response.totalQuantity);
+                      $('.cart_total_price').html(response.totalPrice);
+                      alert(response.message);
+                   },
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       console.log(textStatus, errorThrown);
+                   }
+               });
+                
+            }
+
+
 $(document).ready(function(){
 
-    console.log('document working')
+           console.log('document working')
 
             $.ajaxSetup({
                 headers: {
@@ -159,6 +195,12 @@ $(document).ready(function(){
                 }
             });  
             // var addtocart = document.getElementById("add_to_cart").value;
+
+            // $('.remove-to-cart').on('click',function (){
+
+              
+
+            // });
 
             $('.add_to_cart').on('click',function(){
 
@@ -174,34 +216,34 @@ $(document).ready(function(){
                    url: "{{route('add-to-cart-js')}}",
                    type: "post",
                    data:data,
-                   success: function (data) {
-                    console.log(data)
+                   success: function (response) {
+                    // console.log(data)
 
-                    $('.cart_total_quantity').html(data.cart['totalQuantity']);
-                    $('.cart_total_price').html(data.cart['totalPrice']);
+                    $('.cart_total_quantity').html(response.cart['totalQuantity']);
+                    $('.cart_total_price').html(response.cart['totalPrice']);
 
-                    if(data.type == 'update'){
-                        $('.'+data.id+'_quantity').html(data.item.quantity)
+                    if(response.type == 'update'){
+                        $('.'+response.id+'_quantity').html(response.item.quantity);
                     }
                   
-                    if(data.type == 'new'){
+                    if(response.type == 'new'){
 
                         var html = '';
-                        console.log(data.item);
-                        console.log(data.item.name);
-                        i = data.id;
+                        // console.log(data.item);
+                        // console.log(data.item.name);
+                        i = response.id;
 
-                        html +='<li class="single-shopping-cart">';
+                        html +='<li class="single-shopping-cart" id="'+response.id+'_parent_el">';
                         html +='<div class="shopping-cart-img">';
-                        html +=' <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-1.jpg"></a>';
+                        html +=' <a href="#"><img alt="" src="'+response.item.image+'" width="100px"></a>';
                         html +=' </div>';
                         html +='  <div class="shopping-cart-title">';
-                        html +=' <h3><a href="#">'+data.item.name+'</a></h3>';
-                        html +='<span>Price:'+data.item.price+'</span>';
-                        html +=' <span>Qty:<span class="'+data.id+'_quantity">'+data.item.quantity+'</span></span>';
+                        html +=' <h3><a href="#">'+response.item.name+'</a></h3>';
+                        html +='<span>Price:'+response.item.price+'</span>';
+                        html +=' <span>Qty:<span class="'+response.id+'_quantity">'+response.item.quantity+'</span></span>';
                         html +='</div>';
                         html +='<div class="shopping-cart-delete">';
-                        html +='<a href="{{route('remove-to-cart','+data.id+')}}"><i class="icofont icofont-ui-delete"></i></a>';
+                        html +='<a href="#" class="remove-to-cart" data-id="'+response.id+'" onclick="RemoveToCart('+response.id+')"><i class="icofont icofont-ui-delete"></i></a>';
                         html +='  </div>';
                         html +=' </li>';
                 

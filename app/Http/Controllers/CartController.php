@@ -94,10 +94,11 @@ class CartController extends Controller
     }
 
 
-    public function removeToCart($id){
+    public function removeToCart(Request $request){
+        $id = $request->product_id;
         $product = Product::where('status',1)->find($id);
         if(!$product) {
-            abort(404);
+            return response()->json(['message','Not Found']);
         }  
         $cart = session()->get('cart');
         if($cart){
@@ -121,7 +122,12 @@ class CartController extends Controller
                 }
             }
         }
-        return redirect()->back()->with('remove-from-cart', 'Product Remove from cart successfully!');
+
+        return response()->json([
+            'message'=>'Success',
+            'totalQuantity'=>$cart['totalQuantity'],
+            'totalPrice'=>$cart['totalPrice'],
+        ]);
     }
     
 

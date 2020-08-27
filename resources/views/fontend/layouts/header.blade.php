@@ -99,7 +99,7 @@
     
                             @if($cart['item'])
                                 @foreach ($cart['item'] as $id=>$cartinfo)
-                                <li class="single-shopping-cart">
+                                <li class="single-shopping-cart" id="{{$id}}_parent_el">
                                     <div class="shopping-cart-img">
                                         <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-1.jpg"></a>
                                     </div>
@@ -110,7 +110,7 @@
                                         <span>Qty: <span class="{{$id}}_quantity">{{$cartinfo['quantity']}}</span></span>
                                     </div>
                                     <div class="shopping-cart-delete">
-                                        <a href="{{route('remove-to-cart',$id)}}"><i class="icofont icofont-ui-delete"></i></a>
+                                        <a href="#" class="remove-to-cart" data-id="{{$id}}" onclick="RemoveToCart({{$id}})"><i class="icofont icofont-ui-delete"></i></a>
                                     </div>
                                 </li>
     
@@ -208,9 +208,9 @@
                     @if($cart)
                         @if($cart['item'])
                             @foreach ($cart['item'] as $id=>$cartinfo)
-                            <li class="single-shopping-cart">
+                            <li class="single-shopping-cart"  id="{{$id}}_parent_el">
                                 <div class="shopping-cart-img">
-                                    <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-1.jpg"></a>
+                                    <a href="#"><img alt="" src="{{$cartinfo['image']}}" width="100px"></a>
                                 </div>
 
                                 <div class="shopping-cart-title">
@@ -219,7 +219,9 @@
                                     <span>Qty: <span  class="{{$id}}_quantity">{{$cartinfo['quantity']}}</span></span>
                                 </div>
                                 <div class="shopping-cart-delete">
-                                    <a href="{{route('remove-to-cart',$id)}}"><i class="icofont icofont-ui-delete"></i></a>
+                                    <a href="#" class="remove-to-cart" data-id="{{$id}}" onclick="RemoveToCart({{$id}})">
+                                        <i class="icofont icofont-ui-delete"></i>
+                                    </a>
                                 </div>
                             </li>
 

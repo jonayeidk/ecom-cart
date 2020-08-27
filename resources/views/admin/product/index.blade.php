@@ -76,8 +76,8 @@
                         <td>{{ $product->quantity }}</td>     
                         <td><img width="100px" src="{{ asset('uploads/images/products/'.$product->image)}}"></td>     
                         <td>
-                          @if($product->p_categories)
-                          {{  $product->p_categories->title}} 
+                          @if($product->product_category)
+                          {{  $product->product_category->title}} 
                           @endif
                         </td>
                         <td><span
