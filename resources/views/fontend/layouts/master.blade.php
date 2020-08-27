@@ -157,10 +157,6 @@
                     return;
                 }
                 var remove_productid = id;
-                
-                var parent_el = document.getElementById(id+"_parent_el").style.display = "none";
-                // parent_el.style.display = "none";
-
                 token = $( "input[value='_token']" ).val();
                 data = {
                     "_token": token,
@@ -172,7 +168,7 @@
                    type: "post",
                    data:data,
                    success: function (response) {
-                     
+                      $('.'+id+"_parent_el").hide(); 
                       $('.cart_total_quantity').html(response.totalQuantity);
                       $('.cart_total_price').html(response.totalPrice);
                       alert(response.message);
@@ -233,7 +229,7 @@ $(document).ready(function(){
                         // console.log(data.item.name);
                         i = response.id;
 
-                        html +='<li class="single-shopping-cart" id="'+response.id+'_parent_el">';
+                        html +='<li class="single-shopping-cart '+response.id+'_parent_el" id="'+response.id+'_parent_el">';
                         html +='<div class="shopping-cart-img">';
                         html +=' <a href="#"><img alt="" src="'+response.item.image+'" width="100px"></a>';
                         html +=' </div>';

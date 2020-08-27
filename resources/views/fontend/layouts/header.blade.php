@@ -99,7 +99,7 @@
     
                             @if($cart['item'])
                                 @foreach ($cart['item'] as $id=>$cartinfo)
-                                <li class="single-shopping-cart" id="{{$id}}_parent_el">
+                                <li class="single-shopping-cart {{$id}}_parent_el" id="{{$id}}_parent_el">
                                     <div class="shopping-cart-img">
                                         <a href="#"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/cart/cart-1.jpg"></a>
                                     </div>
@@ -208,7 +208,7 @@
                     @if($cart)
                         @if($cart['item'])
                             @foreach ($cart['item'] as $id=>$cartinfo)
-                            <li class="single-shopping-cart"  id="{{$id}}_parent_el">
+                            <li class="single-shopping-cart {{$id}}_parent_el"  id="{{$id}}_parent_el">
                                 <div class="shopping-cart-img">
                                     <a href="#"><img alt="" src="{{$cartinfo['image']}}" width="100px"></a>
                                 </div>
