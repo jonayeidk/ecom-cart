@@ -16,7 +16,8 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::orderBy( 'created_at', 'DESC' )->paginate( 10 );
+        $products = Product::orderBy( 'created_at', 'DESC' )->with( 'product_category' )->paginate( 10 );
+        dd( $products );
         return view( 'admin.product.index', compact( 'products' ) );
     }
 
@@ -37,7 +38,6 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store( Request $request ) {
-
 
         $this->validate( $request, [
             'title'       => 'required',
@@ -89,7 +89,6 @@ class ProductController extends Controller {
             return redirect()->route( 'admin.product.index', $product->id )->with( 'success', __( 'Product' ) );
         }
         return redirect()->back()->with( 'error', __( 'Please try again.' ) );
-
 
     }
 
