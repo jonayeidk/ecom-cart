@@ -9,6 +9,49 @@ use App\Model\Admin\Cart;
 class CartController extends Controller
 {
 
+
+    public function viewCart(){
+        $cart = session()->get('cart'); 
+        return view('fontend.cart.view',compact('cart'));
+    }
+
+
+    public function updateToCart(Request $request){
+        $id = $request->product_id;
+        $qty = $request->product_quantity;
+
+        $product = Product::where('status',1)->find($id);
+        if(!$product) {
+            abort(404);
+        }  
+
+        // return $product;
+
+        $cart = session()->get('cart');
+        if(isset($cart['item'][$id])) {
+            // entry 
+            // p1 = 3; 2
+            // p2 = 2;
+            // qty = 5 ; 4=> 5-3 = 2 + 2 = 4;
+
+            $cart['totalQuantity'] = ( $cart['totalQuantity'] - $cart['item'][$id]['quantity'] ) + $qty; // ++ = 1 , +=1 , 
+            $cart['totalPrice'] = ( $cart['totalPrice'] - $cart['item'][$id]['quantity'] * $cart['item'][$id]['price']) +  ($qty *$cart['item'][$id]['price']);
+
+            $cart['item'][$id]['quantity'] = $qty; // ++ = 1 , +=1 , 
+           
+            session()->put('cart', $cart);
+
+            return response()->json([
+                'type'=>'update',
+                'cart'=>$cart,
+                'id'=>$id,
+                'item'=>$cart['item'][$id]
+            ]);
+        }
+
+    }
+
+
     public function addToCart(Request $request)
     {
         $id = $request->product_id;

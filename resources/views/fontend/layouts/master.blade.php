@@ -183,7 +183,7 @@
 
 $(document).ready(function(){
 
-           console.log('document working')
+        //    console.log('document working')
 
             $.ajaxSetup({
                 headers: {
@@ -192,11 +192,38 @@ $(document).ready(function(){
             });  
             // var addtocart = document.getElementById("add_to_cart").value;
 
-            // $('.remove-to-cart').on('click',function (){
+            $('.qty').on('change',function (){
+                
+                var qty = parseInt($(this).val());
+                var price = parseInt($(this).attr('data-price'));
+                var id = parseInt($(this).attr('data-id'));
+                var parent = $(this).closest('tr');
+                var child = parent.find('.product-subtotal');
+                child.html('$ '+ (qty*price));
+                token = $( "input[value='_token']" ).val();
+                data = {
+                   "_token": token,
+                   "product_id": id,
+                   "product_quantity": qty,
+               };
 
-              
+               $.ajax({
+                   url: "{{route('update-to-cart')}}",
+                   type: "post",
+                   data:data,
+                   success: function (response) {
+ 
+                      $('.cart_total_quantity').html(response.cart.totalQuantity);
+                      $('.cart_total_price').html(response.cart.totalPrice);
+                    
+                   },
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       console.log(textStatus, errorThrown);
+                   }
+               });
 
-            // });
+
+            });
 
             $('.add_to_cart').on('click',function(){
 

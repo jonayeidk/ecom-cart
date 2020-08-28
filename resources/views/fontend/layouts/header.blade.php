@@ -124,7 +124,7 @@
                             <h4>total: <span class="cart_total_price">$ {{$total}}</span></h4>
                         </div>
                         <div class="shopping-cart-btn">
-                            <a class="btn-style cr-btn" href="#">checkout</a>
+                            <a class="btn-style cr-btn" href="{{route('view-cart')}}">View Cart</a>
                         </div>
                     </div>
     
@@ -235,7 +235,7 @@
                         <h4>total: <span class="cart_total_price">$ {{$total}}</span></h4>
                     </div>
                     <div class="shopping-cart-btn">
-                        <a class="btn-style cr-btn" href="#">checkout</a>
+                        <a class="btn-style cr-btn" href="{{route('view-cart')}}">View Cart</a>
                     </div>
                 </div>
 

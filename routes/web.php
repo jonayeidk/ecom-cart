@@ -26,8 +26,11 @@ Route::get('/home',function(){
 Route::get('/add-to-cart/{id}','CartController@addToCart')->name('add-to-cart');
 Route::post('/remove-to-cart','CartController@removeToCart')->name('remove-to-cart');
 
+Route::get('/view-cart','CartController@viewCart')->name('view-cart');
+
 
 Route::post('/add-to-cart-js','CartController@addToCart')->name('add-to-cart-js');
+Route::post('/update-to-cart','CartController@updateToCart')->name('update-to-cart');
 
 // backend routes
 
