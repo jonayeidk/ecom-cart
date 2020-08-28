@@ -13,31 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-
 // fontend routes
 
-Route::get( '/', 'HomeController@index');
+Route::get( '/', 'HomeController@index' );
 
-Route::get('/home',function(){
-    return redirect('/admin/dashboard');
-});
+Route::get( '/home', function () {
+    return redirect( '/admin/dashboard' );
+} );
 
+Route::get( '/add-to-cart/{id}', 'CartController@addToCart' )->name( 'add-to-cart' );
+Route::post( '/remove-to-cart', 'CartController@removeToCart' )->name( 'remove-to-cart' );
 
-Route::get('/add-to-cart/{id}','CartController@addToCart')->name('add-to-cart');
-Route::post('/remove-to-cart','CartController@removeToCart')->name('remove-to-cart');
+Route::get( '/view-cart', 'CartController@viewCart' )->name( 'view-cart' );
+Route::get( '/checkout', 'CartController@checkOutPage' )->name( 'checkout' );
 
-Route::get('/view-cart','CartController@viewCart')->name('view-cart');
-
-
-Route::post('/add-to-cart-js','CartController@addToCart')->name('add-to-cart-js');
-Route::post('/update-to-cart','CartController@updateToCart')->name('update-to-cart');
+Route::post( '/add-to-cart-js', 'CartController@addToCart' )->name( 'add-to-cart-js' );
+Route::post( '/update-to-cart', 'CartController@updateToCart' )->name( 'update-to-cart' );
 
 // backend routes
 
- 
 Auth::routes();
-
-
 
 Route::prefix( 'admin' )->name( 'admin.' )->namespace( 'Admin' )->group( function () {
 

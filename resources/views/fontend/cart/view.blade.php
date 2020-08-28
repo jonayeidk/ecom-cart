@@ -73,7 +73,7 @@
                             {{-- <button class="btn-style cr-btn"><span>update</span></button> --}}
                         </div>
                         <div class="update-cart">
-                            <a class="btn-style cr-btn" href="#">
+                            <a class="btn-style cr-btn" href="{{ route('checkout')}}">
                                 <span>checkout</span>
                             </a>
                         </div>
