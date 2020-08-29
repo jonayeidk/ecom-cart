@@ -212,7 +212,8 @@ $(document).ready(function(){
                    type: "post",
                    data:data,
                    success: function (response) {
- 
+                       
+                      $('.'+id+'_quantity').html(qty);
                       $('.cart_total_quantity').html(response.cart.totalQuantity);
                       $('.cart_total_price').html(response.cart.totalPrice);
                     

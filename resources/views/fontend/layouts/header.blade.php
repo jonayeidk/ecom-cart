@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-4">
                     <div class="logo-small-device">
-                        <a href="index.html"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/logo/logo.png"></a>
+                        <a href="/"><img alt="" src="{{asset('assets/fontend/')}}/assets/img/logo/logo.png"></a>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-8">

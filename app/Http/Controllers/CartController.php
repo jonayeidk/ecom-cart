@@ -14,6 +14,10 @@ class CartController extends Controller {
     }
 
     public function checkOutPage() {
+        $cart = session()->get( 'cart' );
+        if(!$cart){
+            return redirect(url('/'));
+        }
         return view( 'fontend.checkout.index' );
     }
 

@@ -18,20 +18,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <span class="text-danger">   {{session()->get('error')}}</span>
+                <span class="text-success">   {{session()->get('success')}}</span>
+            </div>
+            <div class="col-md-12">
                 <div class="coupon-accordion">
                     <!-- ACCORDION START -->
                     <h3>Returning customer? <span id="showlogin">Click here to login</span></h3>
+                
                     <div id="checkout-login" class="coupon-content">
                         <div class="coupon-info">
-                            <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>
-                            <form action="#">
+                            <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus. </p>
+                            
+                            <form action="{{route('user-login')}}" method="post">
+                                @csrf
                                 <p class="form-row-first">
                                     <label>Username or email <span class="required">*</span></label>
-                                    <input type="text" />
+                                    <input type="text" name="email"/>
+
                                 </p>
                                 <p class="form-row-last">
                                     <label>Password  <span class="required">*</span></label>
-                                    <input type="text" />
+                                    <input type="text" name="password" />
                                 </p>
                                 <p class="form-row">					
                                     <input type="submit" value="Login" />
@@ -64,94 +72,87 @@
             </div>
         </div>
         <div class="row">
+            <form action="{{route('place-order')}}" method="post">
+                @csrf
             <div class="col-lg-6 col-md-12 col-12">
-                <form action="#">
+            
                     <div class="checkbox-form">						
                         <h3>Billing Details</h3>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="country-select">
                                     <label>Country <span class="required">*</span></label>
-                                    <select>
-                                      <option value="volvo">bangladesh</option>
-                                      <option value="saab">Algeria</option>
-                                      <option value="mercedes">Afghanistan</option>
-                                      <option value="audi">Ghana</option>
-                                      <option value="audi2">Albania</option>
-                                      <option value="audi3">Bahrain</option>
-                                      <option value="audi4">Colombia</option>
-                                      <option value="audi5">Dominican Republic</option>
-                                    </select> 										
+                                    <input type="text" name="country"/>									
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>First Name <span class="required">*</span></label>										
-                                    <input type="text" placeholder="" />
+                                    <input type="text" placeholder="" name="first_name" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Last Name <span class="required">*</span></label>										
-                                    <input type="text" placeholder="" />
+                                    <input type="text" placeholder="" name="last_name"/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Company Name</label>
-                                    <input type="text" placeholder="" />
+                                    <input type="text" placeholder=""  name="company_name"/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Address <span class="required">*</span></label>
-                                    <input type="text" placeholder="Street address" />
+                                    <input type="text" placeholder="Street address" name="address1"/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">									
-                                    <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
+                                    <input type="text" name="address2" placeholder="Apartment, suite, unit etc. (optional)" />
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Town / City <span class="required">*</span></label>
-                                    <input type="text" />
+                                    <input type="text" name="city"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
-                                    <label>State / County <span class="required">*</span></label>										
-                                    <input type="text" placeholder="" />
+                                    <label>State / Country <span class="required">*</span></label>										
+                                    <input type="text" placeholder="" name="state" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Postcode / Zip <span class="required">*</span></label>										
-                                    <input type="text" />
+                                    <input type="text" name="zip_code"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Email Address <span class="required">*</span></label>										
-                                    <input type="email" />
+                                    <input type="email" name="email"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Phone  <span class="required">*</span></label>										
-                                    <input type="text" />
+                                    <input type="text" name="phone"/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list create-acc">	
-                                    <input id="cbox" type="checkbox" />
+                                    <input id="cbox" type="checkbox" name="create_account" />
                                     <label>Create an account?</label>
                                 </div>
-                                <div id="cbox_info" class="checkout-form-list create-account">
+                                <div id="cbox_info" class="checkout-form-list">
                                     <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
                                     <label>Account password  <span class="required">*</span></label>
-                                    <input type="password" placeholder="password" />	
+                                    <input type="password" placeholder="password" name="password"/>	
                                 </div>
                             </div>								
                         </div>
@@ -159,84 +160,76 @@
                             <div class="ship-different-title">
                                 <h3>
                                     <label>Ship to a different address?</label>
-                                    <input id="ship-box" type="checkbox" />
+                                    <input id="ship-box" type="checkbox" name="shipping_status" />
                                 </h3>
                             </div>
                             <div id="ship-box-info" class="row">
                                 <div class="col-md-12">
                                     <div class="country-select">
                                         <label>Country <span class="required">*</span></label>
-                                        <select>
-                                          <option value="volvo">bangladesh</option>
-                                          <option value="saab">Algeria</option>
-                                          <option value="mercedes">Afghanistan</option>
-                                          <option value="audi">Ghana</option>
-                                          <option value="audi2">Albania</option>
-                                          <option value="audi3">Bahrain</option>
-                                          <option value="audi4">Colombia</option>
-                                          <option value="audi5">Dominican Republic</option>
-                                        </select> 										
+                                        <input type="text" name="s_country"/>									
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>First Name <span class="required">*</span></label>										
-                                        <input type="text" placeholder="" />
+                                        <input type="text" placeholder="" name="s_first_name" />
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Last Name <span class="required">*</span></label>										
-                                        <input type="text" placeholder="" />
+                                        <input type="text" placeholder="" name="s_last_name"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Company Name</label>
-                                        <input type="text" placeholder="" />
+                                        <input type="text" placeholder=""  name="s_company_name"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Address <span class="required">*</span></label>
-                                        <input type="text" placeholder="Street address" />
+                                        <input type="text" placeholder="Street address" name="s_address1"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">									
-                                        <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
+                                        <input type="text" name="s_address2" placeholder="Apartment, suite, unit etc. (optional)" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Town / City <span class="required">*</span></label>
-                                        <input type="text" placeholder="Town / City" />
+                                        <input type="text" name="s_city"/>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="checkout-form-list">
-                                        <label>State / County <span class="required">*</span></label>										
-                                        <input type="text" placeholder="" />
+                                        <label>State / Country <span class="required">*</span></label>										
+                                        <input type="text" placeholder="" name="s_state" />
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Postcode / Zip <span class="required">*</span></label>										
-                                        <input type="text" placeholder="Postcode / Zip" />
+                                        <input type="text" name="s_zip_code"/>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Email Address <span class="required">*</span></label>										
-                                        <input type="email" placeholder="" />
+                                        <input type="email" name="s_email"/>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Phone  <span class="required">*</span></label>										
-                                        <input type="text" placeholder="Postcode / Zip" />
+                                        <input type="text" name="s_phone"/>
                                     </div>
-                                </div>								
+                                </div>
+                               								
                             </div>
                             <div class="order-notes">
                                 <div class="checkout-form-list mrg-nn">
@@ -246,7 +239,7 @@
                             </div>
                         </div>													
                     </div>
-                </form>
+               
             </div>	
             <div class="col-lg-6 col-md-12 col-12">
                 <div class="your-order">
@@ -315,7 +308,12 @@
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">PayPal</a></h5>
+                                        <h5 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">Cash On Delivery
+
+                                            </a>
+                                            <input type="radio" name="payment_type" value="cash_on_delivery"/>
+                                        </h5>
                                     </div>
                                     <div id="payment-3" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -331,6 +329,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>

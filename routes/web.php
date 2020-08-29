@@ -23,12 +23,23 @@ Route::get( '/home', function () {
 
 Route::get( '/add-to-cart/{id}', 'CartController@addToCart' )->name( 'add-to-cart' );
 Route::post( '/remove-to-cart', 'CartController@removeToCart' )->name( 'remove-to-cart' );
-
 Route::get( '/view-cart', 'CartController@viewCart' )->name( 'view-cart' );
 Route::get( '/checkout', 'CartController@checkOutPage' )->name( 'checkout' );
-
 Route::post( '/add-to-cart-js', 'CartController@addToCart' )->name( 'add-to-cart-js' );
 Route::post( '/update-to-cart', 'CartController@updateToCart' )->name( 'update-to-cart' );
+
+// Place order
+
+Route::post('/place-order','OrderController@place_order')->name('place-order');
+
+Route::get('/success',function(){
+    return view('fontend.success');
+})->name('success');
+
+// User login 
+
+Route::post('/user-login','UserController@user_login')->name('user-login');
+
 
 // backend routes
 
